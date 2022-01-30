@@ -196,57 +196,6 @@ def do_the_spiral(array):
         height -= 1
     return result
 
-
-##################################
-# [a_005[0][i] for i in range(0, 5)]  # Horizontal left->right
-# [a_005[i][4] for i in range(1, 6)]  # Vertical down
-#
-# [a_005[5][i] for i in reversed(range(0, 4))]  # Horizontal right->left
-# [a_005[i][0] for i in reversed(range(1, 5))]  # Vertical up
-#
-# [a_005[1][i] for i in range(1, 4)]
-# [a_005[i][3] for i in range(2, 5)]
-#
-# [a_005[4][i] for i in reversed(range(1, 3))]
-# [a_005[i][1] for i in reversed(range(2, 4))]
-#
-# [a_005[2][i] for i in range(2, 3)]
-# [a_005[i][2] for i in range(3, 4)]
-#
-# [a_005[3][i] for i in reversed(range(2, 3))]
-# [a_005[i][2] for i in reversed(range(3, 3))]  # end
-
-# second -= 1
-# start += 1
-#
-# second == second
-# end -= 1
-#
-# [a_05[1][i] for i in range(1, 3)]
-# [a_05[i][2] for i in range(2, 3)]
-
-
-# def spiral_traverse_01(array: list) -> list:
-#     x, y = 0, 0
-#     rng = len(array) - 1
-#     direction = 1
-#
-#     while rng > 0:
-#         for i in range(len(array[x][y])[::direction]:
-#             print(array[x][y][::direction])
-#         x += 1
-#         while x < rng:
-#             print(array[x][y][::direction])
-#             x += 1
-#         y += direction
-#         while y < rng:
-#             print(array[x][y])
-#             y += 1
-#         rng -= 1
-#         x = 0
-#         direction = -1
-
-
 if __name__ == '__main__':
     # a = a_007
     a = a_008
