@@ -1,7 +1,7 @@
 """
 Spiral Traverse
 
-Write a funciton that takes in an n x m two-dimensional array (that can be square-shaped when n==m)
+Write a function that takes in an n x m two-dimensional array (that can be square-shaped when n==m)
 and returns a one-dimensional array of all the array's elements in spiral order.
 
 Spiral order starts at the top left corner of the two-dimensional array,
@@ -39,7 +39,7 @@ a_05 = [[1, 2, 3, 4, 5, 6],
         [17, 30, 29, 28, 27, 10],
         [16, 15, 14, 13, 12, 11]]
 
-a_005 = [[1, 2, 3, 4,     5],
+a_005 = [[1, 2, 3, 4, 5],
          [18, 19, 20, 21, 6],
          [17, 28, 29, 22, 7],
          [16, 27, 30, 23, 8],
@@ -86,181 +86,135 @@ a_012 = [
 ]
 
 
-def spiral_traverse(arr):
-    horizontal_direction, horizontal_count = True, 0
-    vertical_direction, vertical_count = True, 0
-    result = []
-    i, j = 0, 0
-    while i < len(arr):
-        j = 0
-        while j < len(arr[i]):
-            print(arr[i][j])
-            j += 1
-        i += 1
-        horizontal_direction = -1
+# #  EXAMPLE
+# [a_05[0][i] for i in range(0, 6)]  # Horizontal
+# [a_05[i][5] for i in range(1, 6)]  # Vertical
+#
+# [a_05[5][i] for i in reversed(range(0, 5))]
+# [a_05[i][0] for i in reversed(range(1, 5))]
+#
+# [a_05[1][i] for i in range(1, 5)]
+# [a_05[i][4] for i in range(2, 5)]
+#
+# [a_05[4][i] for i in reversed(range(1, 4))]
+# [a_05[i][1] for i in reversed(range(2, 4))]
+#
+# [a_05[2][i] for i in range(2, 4)]
+# [a_05[i][3] for i in range(3, 4)]
+#
+# [a_05[3][i] for i in reversed(range(2, 3))]
+# [a_05[i][2] for i in reversed(range(3, 3))]  # end
+#
+# # EXAMPLE 2
+# [a_005[0][i] for i in range(0, 5)]  # Horizontal left->right
+# [a_005[i][4] for i in range(1, 6)]  # Vertical down
+#
+# [a_005[5][i] for i in reversed(range(0, 4))]  # Horizontal right->left
+# [a_005[i][0] for i in reversed(range(1, 5))]  # Vertical up
+#
+# [a_005[1][i] for i in range(1, 4)]
+# [a_005[i][3] for i in range(2, 5)]
+#
+# [a_005[4][i] for i in reversed(range(1, 4))]
+# [a_005[i][1] for i in reversed(range(2, 4))]
+#
+# [a_005[2][i] for i in range(2, 3)]
+# [a_005[i][2] for i in range(3, 4)]
+#
+# [a_005[3][i] for i in reversed(range(2, 3))]
+# [a_005[i][2] for i in reversed(range(3, 3))]  # end
 
-
-#
-#
-# x, y = 0, 0
-# rng_v, rng_h = len(a_01), len(a_01)
-# i = 0
-# while i < len(a_01) ** 2:
-#     if y == rng_v:
-#         rng_v -= 1
-#     if x == rng_h:
-#         rng_h -= 1
-#
-#     if x == rng_v and y == rng_h:
-#         rng_v -= 1
-#         rng_h -= 1
-#         direction = -1
-#         y += 1
-#         print(a_01[x][y])
-#     print(a_01[x][y])
-#     x += 1  # 0123
-
-# for i in a_01:
-#     print(i)
-#
-# for i in a_01[1]:
-#     print(i)
-#
-# for i in range(0, len(a_01)):
-#     print(a_01[0][i])
-#
-# for i in range(1, len(a_01)):
-#     print(a_01[i][-1])
-#
-# for i in range(0, len(a_01))[::-1]:
-#     print(a_01[3][i])
-#
-# for i in range(1, len(a_00))[-1]:
-#     print(i)
-
-# [a_01[0][i] for i in range(0, 4)]
-# [a_01[i][3] for i in range(1, 4)]
-#
-# [a_01[3][i] for i in reversed(range(0, 3))]
-# [a_01[i][0] for i in reversed(range(1, 3))]
-#
-# [a_01[1][i] for i in range(1, 3)]
-# [a_01[i][2] for i in range(2, 3)]
-
-
-start = 0
-end = len(a_007)
-width = len(a_007[0])
-height = len(a_007)
+# # EXAMPLE 2 make a function
+# b = a_005
+# b = a_006
+# b = a_012
+# b = a_05
+b = a_03
+width = len(b[0])
+height = len(b)
 first = 0
-second = len(a_007) - 1
+second = width - 1
+start = 0
 
-result = []
-k = 0
-i = 0
-row, col = 0, 0
-rng = width
-while k < height:
-    while i < rng:
-        print(a_007[row][i])
-        i += 1
+while width - start > 0:
+    print([b[first][i] for i in range(start, width)])  # Horizontal left->right
+    print([b[i][width - 1] for i in range(start + 1, height)])  # Vertical down
+
+    if len([b[height - 1][i] for i in reversed(range(start, width - 1))]) <= 0:
+        break
+    print([b[height - 1][i] for i in reversed(range(start, width - 1))])  # Horizontal right->left
+
+    print([b[i][first] for i in reversed(range(start + 1, height - 1))])  # Vertical up
+    first += 1
+    start += 1
+    width -= 1
     height -= 1
-    row += 1
-    rng = height
-    i = 0
-    k += 1
-minus = -1
-first = 3
-second = 5
-
-while second > 0:
-    print(a_007[first][second])
-    y += minus
-    print(y)
 
 
-def func(array):
-    start = 0
-    end = len(array)
+def do_the_spiral(array):
+    print(type(array[0]))
+    if not isinstance(array[0], list):
+        return array
+    elif len(array[0]) == 1:
+        return [val for sublist in array for val in sublist]
+
+    result = []
     width = len(array[0])
     height = len(array)
-    first = 0
-    second = len(array) - 1
-
-    result = []
-
-    while end - start > 0:
-        # one = [array[first][i] for i in range(start, end)]
-        one = [array[first][i] for i in range(start, width)]
-
+    start = 0
+    while width - 1 or height - 1 > 0:
+        one = [array[start][i] for i in range(start, width)]
         if len(one) > 0:
             print(one)
             result.extend(one)
+        else:
+            break
 
-        two = [array[i][second] for i in range(start + 1, height)]
+        two = [array[i][width - 1] for i in range(start + 1, height)]
         if len(two) > 0:
-            print(two)
+            print(two)  # Vertical down
             result.extend(two)
+        else:
+            break
 
-        three = [array[second][i] for i in reversed(range(start, width - 1))]
+        three = [array[height - 1][i] for i in reversed(range(start, width - 1))]
         if len(three) > 0:
-            print(three)
+            print(three)  # Horizontal right->left
             result.extend(three)
+        else:
+            break
 
-        four = [array[i][first] for i in reversed(range(start + 1, height - 1))]
+        four = [array[i][start] for i in reversed(range(start + 1, height - 1))]
         if len(four) > 0:
-            print(four)
+            print(four)  # Vertical up
             result.extend(four)
-
-        first += 1
-        second -= 1
+        else:
+            break
 
         start += 1
-        end -= 1
         width -= 1
         height -= 1
-
     return result
 
 
-#  EXAMPLE
-[a_05[0][i] for i in range(0, 6)]  # Horizontal
-[a_05[i][5] for i in range(1, 6)]  # Vertical
-
-[a_05[5][i] for i in reversed(range(0, 5))]
-[a_05[i][0] for i in reversed(range(1, 5))]
-
-[a_05[1][i] for i in range(1, 5)]
-[a_05[i][4] for i in range(2, 5)]
-
-[a_05[4][i] for i in reversed(range(1, 4))]
-[a_05[i][1] for i in reversed(range(2, 4))]
-
-[a_05[2][i] for i in range(2, 4)]
-[a_05[i][3] for i in range(3, 4)]
-
-[a_05[3][i] for i in reversed(range(2, 3))]
-[a_05[i][2] for i in reversed(range(3, 3))]  # end
-
-# EXAMPLE 2
-[a_005[0][i] for i in range(0, 5)]  # Horizontal left->right
-[a_005[i][4] for i in range(1, 6)]  # Vertical down
-
-[a_005[5][i] for i in reversed(range(0, 4))]  # Horizontal right->left
-[a_005[i][0] for i in reversed(range(1, 5))]  # Vertical up
-
-[a_005[1][i] for i in range(1, 4)]
-[a_005[i][3] for i in range(2, 5)]
-
-[a_005[4][i] for i in reversed(range(1, 4))]
-[a_005[i][1] for i in reversed(range(2, 4))]
-
-[a_005[2][i] for i in range(2, 3)]
-[a_005[i][2] for i in range(3, 4)]
-
-[a_005[3][i] for i in reversed(range(2, 3))]
-[a_005[i][2] for i in reversed(range(3, 3))]  # end
-
+##################################
+# [a_005[0][i] for i in range(0, 5)]  # Horizontal left->right
+# [a_005[i][4] for i in range(1, 6)]  # Vertical down
+#
+# [a_005[5][i] for i in reversed(range(0, 4))]  # Horizontal right->left
+# [a_005[i][0] for i in reversed(range(1, 5))]  # Vertical up
+#
+# [a_005[1][i] for i in range(1, 4)]
+# [a_005[i][3] for i in range(2, 5)]
+#
+# [a_005[4][i] for i in reversed(range(1, 3))]
+# [a_005[i][1] for i in reversed(range(2, 4))]
+#
+# [a_005[2][i] for i in range(2, 3)]
+# [a_005[i][2] for i in range(3, 4)]
+#
+# [a_005[3][i] for i in reversed(range(2, 3))]
+# [a_005[i][2] for i in reversed(range(3, 3))]  # end
 
 # second -= 1
 # start += 1
@@ -294,6 +248,8 @@ def func(array):
 
 
 if __name__ == '__main__':
-    a = a_007
+    # a = a_007
+    a = a_008
     # spiral_traverse_01(a_01)
-    ic(func(a))
+    print(do_the_spiral(a))
+    # ic(func(a))
